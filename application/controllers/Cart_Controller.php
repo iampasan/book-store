@@ -22,10 +22,16 @@ class Cart_Controller extends CI_Controller {
     }
 
     public function addToCart($book_id) {
-
+        
+        $redirect=true;
         $qty = $this->input->post('qty');
+        
+        if(!isset($qty)){
+            $qty = 1;
+            $redirect=false;
+        }
 
-        $this->addItem($book_id, $qty, TRUE);
+        $this->addItem($book_id, $qty, $redirect);
     }
 
     public function addItem($book_id, $qty, $redirectTocart = FALSE) {
@@ -52,8 +58,10 @@ class Cart_Controller extends CI_Controller {
                 $this->session->set_userdata('cart', $cart);
             }
         }
-
-        redirect('cart');
+        
+        if($redirectTocart){
+            redirect('cart');
+        }
     }
 
     public function removeFromCart($id) {
