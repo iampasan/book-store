@@ -13,6 +13,7 @@ class Cart_Controller extends CI_Controller {
 
     public function index() {
         $data['items'] = $this->session->cart;
+        $data['categories'] = $this->category_model->getCategories();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('pages/shopping_cart', $data);
@@ -63,9 +64,18 @@ class Cart_Controller extends CI_Controller {
             redirect('cart');
         }
     }
+    
+    public function updateQty($id){
+        $qty = $this->input->post('qty');
+        $index = $this->exists($id);
+        $cart = $this->session->cart;
+        $cart[$index]['bqty'] = $qty;
+        $cart = array_values($cart); // 'reindex' array
+        $this->session->set_userdata('cart', $cart);
+        redirect('cart');
+    }
 
     public function removeFromCart($id) {
-        echo "Gets here";
         $index = $this->exists($id);
         $cart = $this->session->cart;
         print_r($cart);

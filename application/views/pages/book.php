@@ -41,7 +41,7 @@
                                     <?php if ($book['qty']>0){echo form_open('cart/addToCart/' . $book['id'], 'class="form-inline"'); ?>
                                     <div class="form-group">
                                         <label for="inputPassword6">Quantity</label>
-                                        <input type="number" name="qty" min="1" default="1" max="<?php echo $book['qty']; ?>" class="ml-2 form-control form-control-sm" />
+                                        <input type="number" name="qty" min="1" value="1" max="<?php echo $book['qty']; ?>" class="ml-2 form-control form-control-sm" />
                                     </div>
                                     <div class="form-group ml-3">
                                         <button type="submit" class="btn btn-primary">Add to cart</button>

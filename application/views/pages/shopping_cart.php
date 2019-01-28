@@ -21,12 +21,17 @@
                                     <h5 class="card-title"><?php echo $item['title']; ?></h5>
                                     <p class="card-text"><?php echo $item['author']; ?></p>
                                     <p class="card-text text-right font-weight-bold"><?php echo "Rs." . $item['unit_price']; ?></p>
-                                    <p class="card-text text-right font-weight-bold"><?php echo "Quantity : " . $item['bqty']; ?></p>
+                                    
+                                    <p class="card-text text-right align-right font-weight-bold">
+                                        <?php echo form_open('cart/update/' . $item['id'], 'class="form"'); ?>
+                                        <?php echo "Quantity : "?></p>
+                                    <input type="number" name="qty" min="1" value="<?php echo $item['bqty']; ?>" max="<?php echo $item['qty']; ?>" style="width:5em;" class="ml-2 form-control form-control-sm"/>
                                     <hr class="my-4">
                                     <div class="text-right">
-                                        <a href="#" class="btn btn-primary btn-sm">Update quantity</a>
+                                        <button type="submit" class="btn btn-primary btn">Update quantity</button>
+                                        </form>
                                         <a href="<?php echo base_url("cart/remove/" . $item['id']); ?>
-                                           " class="btn btn-danger btn-sm">Remove Item</a>
+                                           " class="btn btn-danger btn">Remove Item</a>
                                     </div>
                                 </div>
                             </div>

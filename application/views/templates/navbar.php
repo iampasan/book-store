@@ -14,9 +14,13 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <?php foreach ($categories as $cat): ?>
+                      <a class="dropdown-item" href="<?php echo base_url('category/'.$cat['id']);?>">
+                          <?php echo $cat['name'] ?>
+                      </a>
+            <?php endforeach ?>
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>

@@ -63,5 +63,6 @@ $route['category/(:any)'] = 'Book_controller/viewByCategory/$1';
 $route['books/(:any)'] = 'Book_controller/view/$1';
 $route['cart/addToCart/(:any)'] = 'Cart_Controller/addToCart/$1';
 $route['cart/remove/(:any)'] = 'Cart_Controller/removeFromCart/$1';
+$route['cart/update/(:any)'] = 'Cart_Controller/updateQty/$1';
 $route['cart'] = 'Cart_Controller';
 $route['default_controller'] = 'Home_Controller/';

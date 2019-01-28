@@ -12,6 +12,8 @@ class Home_Controller extends CI_Controller {
 
         $data['books'] = $this->book_model->getBooks();
         
+        $data['categories'] = $this->category_model->getCategories();
+        
         $data['books_in_categories'] = $this->getCategoriesAndBooks();
 
         $data['title'] = "Sample Title"; // Capitalize the first letter

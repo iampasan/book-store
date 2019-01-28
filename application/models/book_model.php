@@ -35,7 +35,7 @@ class Book_model extends CI_Model {
     }
 
     public function getBookById_minFields($id) {
-        $this->db->select('id,title,author,cover_url,unit_price');
+        $this->db->select('id,title,author,cover_url,unit_price,qty');
         $query = $this->db->get_where('book', array('id' => $id));
         return $query->row_array();
     }

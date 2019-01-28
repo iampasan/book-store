@@ -22,6 +22,7 @@ class Book_Controller extends CI_Controller {
 
         //Get relavent book
         $data['book'] = $this->book_model->getBookById($book_id);
+        $data['categories'] = $this->category_model->getCategories();
 
 
         if (empty($data['book'])) {
@@ -61,6 +62,7 @@ class Book_Controller extends CI_Controller {
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
         $data['category'] = $this->category_model->getCategoryById($category_id);
+        $data['categories'] = $this->category_model->getCategories();
         $data['books'] = $this->book_model->getBooksByCategory($category_id, $config["per_page"], $page);
         $data["links"] = $this->pagination->create_links();
         $jumbtron_data['title'] = $data['category']['name'];
@@ -68,7 +70,7 @@ class Book_Controller extends CI_Controller {
 
 
         $this->load->view('templates/header');
-        $this->load->view('templates/navbar');
+        $this->load->view('templates/navbar',$data);
         $this->load->view('templates/plain_jumbtron', $jumbtron_data);
         $this->load->view('templates/books', $data);
         $this->load->view('templates/footer');
@@ -78,9 +80,10 @@ class Book_Controller extends CI_Controller {
 
         $data['books'] = $this->book_model->search_book();
         $searchphrase = $this->input->post('search_phrase');
+        $data['categories'] = $this->category_model->getCategories();
 
         $this->load->view('templates/header');
-        $this->load->view('templates/navbar');
+        $this->load->view('templates/navbar',$data);
 
         if (!empty($data['books'])) {
             $data['search_details'] = 'Search results for "' . $searchphrase . '"';

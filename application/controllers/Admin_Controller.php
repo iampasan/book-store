@@ -17,11 +17,12 @@ class Admin_Controller extends CI_Controller {
 
     public function index() {
 
+        $data['categories'] = $this->category_model->getCategories();
         $jumbtron_data['title'] = "Welcome " . $_SESSION['user']['Fname'] . " !";
         $jumbtron_data['subtitle'] = "Admin panel for BookStore";
 
         $this->load->view('templates/header');
-        $this->load->view('templates/navbar');
+        $this->load->view('templates/navbar',$data);
         $this->load->view('templates/plain_jumbtron', $jumbtron_data);
         $this->load->view('pages/admin_home');
         $this->load->view('templates/footer');
@@ -34,10 +35,11 @@ class Admin_Controller extends CI_Controller {
     public function create_category() {
 
         $this->form_validation->set_rules('name', 'Category name', 'required');
+        $data['categories'] = $this->category_model->getCategories();
 
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('templates/header');
-            $this->load->view('templates/navbar');
+            $this->load->view('templates/navbar',$data);
             $this->load->view('pages/create_category');
             $this->load->view('templates/footer');
         } else {
@@ -58,7 +60,7 @@ class Admin_Controller extends CI_Controller {
             $data['img_upload_err'] = '';
 
             $this->load->view('templates/header');
-            $this->load->view('templates/navbar');
+            $this->load->view('templates/navbar',$data);
             $this->load->view('pages/add_book', $data);
             $this->load->view('templates/footer');
         } else {
@@ -77,7 +79,7 @@ class Admin_Controller extends CI_Controller {
                 //If error, pass the error to form and reload
                 $data['img_upload_err'] = $this->upload->display_errors();
                 $this->load->view('templates/header');
-                $this->load->view('templates/navbar');
+                $this->load->view('templates/navbar',$data);
                 $this->load->view('pages/add_book', $data);
                 $this->load->view('templates/footer');
             } else {
