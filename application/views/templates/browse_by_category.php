@@ -26,7 +26,7 @@
                                                 <div class="mt-auto">
                                                     <p class="card-text"><?php echo $book['author']; ?></p>
                                                     <p class="card-text font-weight-bold">Rs.<?php echo $book['unit_price']; ?></p>
-                                                    <div class="text-center"><a href="#" class="btn btn-outline-primary btn-block">Add to cart</a></div>
+                                                    <div class="text-center"><a href="<?php echo base_url("cart/addToCart/" . $book['id']); ?>" class="btn btn-outline-primary btn-block">Add to cart</a></div>
                                                 </div>
                                             </div>
                                         </div>

@@ -32,10 +32,11 @@ class Cart_Controller extends CI_Controller {
             $redirect=false;
         }
 
-        $this->addItem($book_id, $qty, $redirect);
+        $this->addItem($book_id, $qty, true);
+        
     }
 
-    public function addItem($book_id, $qty, $redirectTocart = FALSE) {
+    public function addItem($book_id, $qty, $redirectTocart = TRUE) {
 
         if (!isset($book_id, $qty)) {
             redirect('cart');

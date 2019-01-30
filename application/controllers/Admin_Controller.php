@@ -44,6 +44,7 @@ class Admin_Controller extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             $this->category_model->add_category();
+            redirect('/admin');
         }
     }
 
@@ -58,7 +59,6 @@ class Admin_Controller extends CI_Controller {
         if ($this->form_validation->run() === FALSE) {
             $data['categories'] = $this->category_model->getCategories();
             $data['img_upload_err'] = '';
-
             $this->load->view('templates/header');
             $this->load->view('templates/navbar',$data);
             $this->load->view('pages/add_book', $data);
